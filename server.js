@@ -1,27 +1,21 @@
+// server.js
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const mongoose = require('./db'); // import DB connection
 const app = express();
+const port = 3000;
 app.use(bodyParser.json());
-
-// MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/mydb')
-  .then(() => console.log(" MongoDB connected"))
-  .catch(err => console.error(" MongoDB connection error:", err));
-const UserSchema = new mongoose.Schema({
+// Define schema & model
+const userSchema = new mongoose.Schema({
   name: String,
-  email: String,
-  age: Number,
+  age: Number
 });
-const User = mongoose.model('User', UserSchema);
-
-//  Route
+const User = mongoose.model('User', userSchema);
+// Route
 app.get('/', (req, res) => {
   res.send("<h1>Welcome to My CRUD API</h1><h3>Hello From Crud Operation Server</h3>");
 });
-// APIs Operation
-// CREATE (POST)
+// Post 
 app.post('/user', async (req, res) => {
   try {
     const { name, email, age } = req.body;
@@ -32,15 +26,17 @@ app.post('/user', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// READ (GET)
+// Get
 app.get('/user', async (req, res) => {
   const users = await User.find();
   res.json(users);
 });
-const port = 3000;
+// Start server
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+  console.log(`Server running on http://localhost:${port}`);
 });
+
+
 
 
 
