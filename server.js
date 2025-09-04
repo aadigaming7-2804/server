@@ -8,7 +8,9 @@ app.use(bodyParser.json());
 // Define schema & model
 const userSchema = new mongoose.Schema({
   name: String,
+  email: String,
   age: Number
+  
 });
 const User = mongoose.model('User', userSchema);
 // Route
@@ -35,6 +37,7 @@ app.get('/user', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
 
 
 
