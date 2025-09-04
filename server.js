@@ -7,8 +7,8 @@ app.use(bodyParser.json());
 
 // MongoDB connection
 mongoose.connect('mongodb://127.0.0.1:27017/mydb')
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+  .then(() => console.log(" MongoDB connected"))
+  .catch(err => console.error(" MongoDB connection error:", err));
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -41,6 +41,7 @@ const port = 3000;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
+
 
 
 
