@@ -9,17 +9,14 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://127.0.0.1:27017/mydb')
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
-
-// User model
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
   age: Number,
 });
-
 const User = mongoose.model('User', UserSchema);
 
-// -------------------- Root Route --------------------
+//  Route
 app.get('/', (req, res) => {
   res.send("<h1>Welcome to My CRUD API</h1><h3>Hello From Crud Operation Server</h3>");
 });
@@ -43,3 +40,4 @@ app.get('/user', async (req, res) => {
 const port = 3000;
 app.listen(port, () => {
   console.log(`Serve
+
