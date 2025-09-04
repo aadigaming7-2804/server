@@ -39,5 +39,8 @@ app.get('/user', async (req, res) => {
 });
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Serve
+  console.log(`Server running at http://localhost:${port}/`);
+});
+
+
 
